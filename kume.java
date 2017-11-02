@@ -1,5 +1,7 @@
 package lab7.kumeler;
+import java.lang.*;
 import java.util.ArrayList;
+
 public class kume {
 
     private ArrayList<Integer> elemanlar;
@@ -15,7 +17,10 @@ public class kume {
     }
 
     public kume(kume a) {
-       this.elemanlar=a.elemanlar;
+        elemanlar=new ArrayList<>();
+        for (int i = 0; i < a.elemanlar.size(); i++) {
+            this.elemanlar.add(a.elemanlar.get(i));
+        }
     }
 
     public void ekle(int a) {
@@ -68,10 +73,6 @@ public class kume {
     return birlesim1;  
   }
   
-
-    
-
-  
     public kume kesisim(kume a) {
        kume kesisim1 = new kume(a);
        kume kesisim2 = new kume();
@@ -90,25 +91,61 @@ public class kume {
     }
 
      public kume fark(kume a) {
-         int r,q;
-       kume fark1 = new kume(a);
-       kume fark2 = new kume();
-       kume fark3 = new kume();
-       for(int i=0;i<elemanlar.size();i++)
-       fark2.ekle(elemanlar.get(i));
+       kume fark1 = new kume();
+       kume fark2 = new kume(a);
+       for(int i=0;i<this.elemanlar.size();i++)
+       fark1.ekle(this.elemanlar.get(i));
        
-       for(int i=0;i<fark2.elemanlar.size();i++){
-           fark3.ekle(fark2.elemanlar.get(i));
+      for(int i=0;i<fark1.elemanlar.size();i++){
+           for(int j=0;j<fark2.elemanlar.size();j++){
+               if(fark1.elemanlar.get(i)==fark2.elemanlar.get(j))//Sorunlu if
+                   fark1.elemanlar.remove(i);
+           }
        }
-        return fark3;
+       
+        return fark1;
     }
 
-    /* public ArrayList<kume> altKumeler(){
-         kume a = new kume();
-         return a;
-     }
-   */
-
-  
-}
+     public ArrayList<kume> altKumeler(){
+         int n=(int) Math.pow(2,elemanlar.size());
+         
+         ArrayList<kume> altkume=new ArrayList <>();
+         kume a1=new kume();
+         kume a2=new kume();
+         kume a3=new kume();
+         kume a4=new kume();
+         kume a5=new kume();
+         kume a6=new kume();
+         kume a7=new kume();
+         System.out.println("Sadece 3 elemanlı kumelerin altkumesi bulunabiliyor");
+         System.out.println("Alt Kume Sayisi = "+n);
+         System.out.println("={}");
+         
+             a1.ekle(elemanlar.get(0));
+             a2.ekle(elemanlar.get(1));
+             a3.ekle(elemanlar.get(2));
+             for(int i=0;i<elemanlar.size()-1;i++)
+                 a4.ekle(elemanlar.get(i));
+             for(int i=1;i<elemanlar.size();i++)
+                 a5.ekle(elemanlar.get(i));  
+             for(int i=0;i<elemanlar.size();i++){
+                 if(i!=0)
+                     i++;
+                 if(i>2)
+                     break;
+                 a6.ekle(elemanlar.get(i));
+             }
+             for(int i=0;i<elemanlar.size();i++)
+                 a7.ekle(elemanlar.get(i));
+             
+         altkume.add(a1);
+         altkume.add(a2);
+         altkume.add(a3);
+         altkume.add(a4);
+         altkume.add(a5);
+         altkume.add(a6);
+         altkume.add(a7);
+         return altkume ;
+     
+     }}
 
