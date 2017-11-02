@@ -1,0 +1,2 @@
+kume islemleri ardı ardına çağırıldığı zaman yanlış sonuçlar veriyor.
+class içinde bulunan arraylist'in(elemanlar) her kume islemi sonrasında değeri değişiyor.
